@@ -1,0 +1,10 @@
+library(robotstxt)
+path<-paths_allowed("https://www.imdb.com/chart/top/")
+library(rvest)
+My_web<-read_html("https://www.imdb.com/chart/top/")
+my_table<-html_nodes(My_web,"table")
+Movie<-html_table(my_table)[[1]]
+View(Movie)
+final_movie_chart<-Movie[,2:3]
+View(final_movie_chart)
+write.csv(final_movie_chart,"Movies.csv")
